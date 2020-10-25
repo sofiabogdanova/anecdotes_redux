@@ -48,7 +48,6 @@ const reducer = (state = initialState, action) => {
     }
 
     case 'CREATE': {
-      //const createdAnecdote = asObject(action.data)
       return [...state, action.data]
     }
 
