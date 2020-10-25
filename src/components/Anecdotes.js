@@ -20,7 +20,14 @@ const Anecdote = ({anecdote, handleVote}) => {
 const Anecdotes = () => {
     const dispatch = useDispatch()
     const anecdotes = useSelector(state => {
-        return state.anecdotes.sort(function (a, b) {
+        let unsortedAnecdotes = state.anecdotes
+        const filterValue = state.filter.toLowerCase()
+        if(filterValue) {
+            unsortedAnecdotes = unsortedAnecdotes.filter(
+                a => a.content.toLowerCase().startsWith(filterValue))
+        }
+
+        return unsortedAnecdotes.sort(function (a, b) {
             return b.votes - a.votes
         })
     })
@@ -36,9 +43,6 @@ const Anecdotes = () => {
                     key={anecdote.id}
                     anecdote={anecdote}
                     handleVote={() => vote(anecdote)}
-                    // handleVote={() =>
-                    //     dispatch(voteForAnecdote(anecdote.id))
-                    // }
                 />
             )}
         </div>
