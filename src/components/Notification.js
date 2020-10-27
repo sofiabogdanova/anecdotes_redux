@@ -3,11 +3,7 @@ import {useSelector, useDispatch} from 'react-redux'
 import {notify} from '../reducers/notificationReducer';
 
 const Notification = () => {
-    const dispatch = useDispatch()
     const notification = useSelector((reducer) => {
-        setTimeout(() => {
-            dispatch(notify(''))
-        }, 5000)
         return reducer.notification
     })
 

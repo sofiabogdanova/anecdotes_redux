@@ -5,15 +5,31 @@ const notificationReducer = (state = '', action) => {
             return notification
         }
 
+        case 'REMOVE_NOTIFICATION': {
+            return ''
+        }
+
         default:
             return state
     }
 }
 
-export const notify = (message) => {
+export const notify = (message, showTime) => {
+    return async dispatch => {
+        setTimeout(() => {
+            dispatch(removeNotification())
+        }, showTime)
+        dispatch({
+            type: 'NOTIFY',
+            data: message
+        })
+    }
+
+}
+
+export const removeNotification = () => {
     return {
-        type: 'NOTIFY',
-        data: message
+        type: 'REMOVE_NOTIFICATION'
     }
 }
 
