@@ -1,3 +1,5 @@
+import {timeoutCollection} from 'time-events-manager'
+
 const notificationReducer = (state = '', action) => {
     switch (action.type) {
         case 'NOTIFY': {
@@ -16,6 +18,7 @@ const notificationReducer = (state = '', action) => {
 
 export const notify = (message, showTime) => {
     return async dispatch => {
+        timeoutCollection.removeAll()
         setTimeout(() => {
             dispatch(removeNotification())
         }, showTime)
