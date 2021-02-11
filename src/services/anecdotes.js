@@ -24,4 +24,4 @@ const vote = async (id) => {
     await axios.put(`${baseUrl}/${id}`, newAnecdote)
 }
 
-export default { getAll, createNew, vote }
+export default { getAll, createNew, vote }//
